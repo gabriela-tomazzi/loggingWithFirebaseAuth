@@ -28,9 +28,10 @@ function signUp() {
 
 function logIn() {
 	informationsDiv.style.display = 'block';
-	enviar.textContent = 'Log In'
+	enviar.textContent = 'Log In';
 
-	console.log('Log in executado');
+	enviar.addEventListener('click', logUser);
+	cancelar.addEventListener('click', cancel);
 }
 
 function createUser() {
@@ -45,12 +46,40 @@ function createUser() {
 		}).catch(err=> {
 			errordiv.textContent = err;
 		})
+
+}
+
+function logUser() {
+	let errordiv = document.querySelector('.errormsg');
+	let email = document.getElementById('inputEmail').value;
+	let senha = document.getElementById('inputSenha').value;
+
+	auth.signInWithEmailAndPassword(email, senha)
+	.then(loggedUser=> {
+		errordiv.textContent = 'User logged'
+	}).catch(err=> {
+		errordiv.textContent = err;
+	})
+
+	informationsDiv.style.display = 'none'
 }
 
 function cancel() {
 	let email = document.getElementById('inputEmail');
 	let senha = document.getElementById('inputSenha');
-	email.value = '';		//TODO not working why
+	email.value = '';
 	senha.value = '';
 	informationsDiv.style.display = 'none';
 }
+
+// function login() {
+// 	let userEmail = 'novoteste@teste.com';
+// 	let userPassword = '123456';
+
+// 	auth.signInWithEmailAndPassword(userEmail, userPassword)
+// 		.then(loggedUser=> {
+// 			//console.log(auth.currentUser);	//*will log user with login info
+// 		}).catch(err=> {
+// 			console.log(err);
+// 		});
+// }
