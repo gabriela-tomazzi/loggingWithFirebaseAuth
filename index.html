@@ -29,18 +29,23 @@
 		<h2>Forneça email e senha: </h2>
 
 		<p>E-mail:</p>
-		<input placeholder="ex: email@exemplo.com" id="inputEmail" type="text">
+		<input placeholder="ex: email@exemplo.com" 
+		id="inputEmail" 
+		type="text">
+
 		<p>Senha:</p>
-		<input placeholder="Acima de 6 carácteres" id="inputSenha" type="text">
+		<input placeholder="Acima de 6 carácteres" 
+		id="inputSenha" 
+		type="text">
 
 		<div class="buttons">
-			<button>Enviar</button>
-			<button>Cancelar</button>
+			<button id="enviarButton">Enviar</button>
+			<button id="cancelarButton">Cancelar</button>
 		</div>
 	</div> <!-- informations -->
 
 	<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
 	<script src="script.js"></script>
 </body>
 </html>

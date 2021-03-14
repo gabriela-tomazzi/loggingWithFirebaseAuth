@@ -9,63 +9,45 @@ var firebaseConfig = {
     measurementId: "G-C06BEV3LL5"
 };
 firebase.initializeApp(firebaseConfig);
-let db = firebase.firestore();
 let auth = firebase.auth();
 
-//----------------- Creating --------------------------------------------------
+let informationsDiv = document.querySelector('.informations');
+let email = document.getElementById('inputEmail').value;
+let senha = document.getElementById('inputSenha').value;
 
-let newUserEmail = 'novoteste@teste.com';
-let newUserPassword = '123456';
+let enviar = document.querySelector('#enviarButton');
+let cancelar = document.querySelector('#cancelarButton');
 
-// auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword)	promisse
-//     .then(user=> {
-//         console.log(user)
-//     }).catch(err=> {
-//         console.log(err)
-//     });
 
-function criarUsuario(email, senha) {
+function signUp() {
+	informationsDiv.style.display = 'block';
+	enviar.textContent = 'Sign Up'
+
+	enviar.addEventListener('click', createUser);
+	cancelar.addEventListener('click', cancel);
+}
+
+function logIn() {
+	informationsDiv.style.display = 'block';
+	enviar.textContent = 'Log In'
+
+	console.log('Log in executado');
+}
+
+function createUser() {
 
 	auth.createUserWithEmailAndPassword(email, senha)
-    .then(user=> {
-        console.log(user)
-    }).catch(err=> {
-        console.log(err)
-    });
-}
-
-//----------------- Managing logins -------------------------------------------
-
-let user = auth.currentUser;		//*logged user
-//console.log(user);				//*null
-
-function login() {
-	let userEmail = 'novoteste@teste.com';
-	let userPassword = '123456';
-
-	auth.signInWithEmailAndPassword(userEmail, userPassword)
-		.then(loggedUser=> {
-			//console.log(loggedUser);			//*will log user
-			//console.log(auth.currentUser);	//*will log user with login info
+		.then(user=> {
+			console.log(`User created`);
 		}).catch(err=> {
 			console.log(err);
-		});
+		})
+
+	logIn();
 }
-// login();
 
-//console.log(auth.currentUser); //* if line 54 is commented, returns null
-auth.onAuthStateChanged(user=> {		//?callback that verifies state of login
-	if(user) {
-		//console.log(user);			//* same return as line 49
-	}else {
-		//console.log('no user logged in');		//! if logout() is executed, this will run, the login state changed, and the if makes it log this line
-	}
-})
-
-function logout() {
-	auth.signOut().then(()=> {		//* then() doesn't return anything here
-		console.log('logged out');
-	}).catch(err=> {
-		console.log(err);
-	})
+function cancel() {
+	email.value = '';		//TODO not working why
+	senha.value = '';
+	informationsDiv.style.display = 'none';
 }
