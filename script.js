@@ -10,10 +10,9 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 let auth = firebase.auth();
+let user = auth.currentUser;
 
 let informationsDiv = document.querySelector('.informations');
-let email = document.getElementById('inputEmail').value;
-let senha = document.getElementById('inputSenha').value;
 
 let enviar = document.querySelector('#enviarButton');
 let cancelar = document.querySelector('#cancelarButton');
@@ -35,18 +34,22 @@ function logIn() {
 }
 
 function createUser() {
+	let errordiv = document.querySelector('.errormsg');
+	let email = document.getElementById('inputEmail').value;
+	let senha = document.getElementById('inputSenha').value;
 
 	auth.createUserWithEmailAndPassword(email, senha)
 		.then(user=> {
 			console.log(`User created`);
+			logIn()
 		}).catch(err=> {
-			console.log(err);
+			errordiv.textContent = err;
 		})
-
-	logIn();
 }
 
 function cancel() {
+	let email = document.getElementById('inputEmail');
+	let senha = document.getElementById('inputSenha');
 	email.value = '';		//TODO not working why
 	senha.value = '';
 	informationsDiv.style.display = 'none';
