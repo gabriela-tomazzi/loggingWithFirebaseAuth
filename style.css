@@ -19,6 +19,10 @@ p {
 	font-size: 1rem;
 }
 
+.displayNone {
+	display: none;
+}
+
 .informations {
 	position: fixed;
 	/* top: 50%; */

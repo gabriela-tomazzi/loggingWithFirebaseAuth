@@ -13,6 +13,7 @@ let auth = firebase.auth();
 let user = auth.currentUser;
 
 let informationsDiv = document.querySelector('.informations');
+let lis = document.getElementsByTagName('li');
 
 let enviar = document.querySelector('#enviarButton');
 let cancelar = document.querySelector('#cancelarButton');
@@ -32,6 +33,17 @@ function logIn() {
 
 	enviar.addEventListener('click', logUser);
 	cancelar.addEventListener('click', cancel);
+}
+
+function logOut() {
+	auth.signOut().then(()=> {
+		console.log('logged out');
+	}).catch(err=> {
+		console.log(err);
+	})
+
+	lis[0].className = 'displayNone';
+	lis[1].className = '';
 }
 
 function createUser() {
@@ -56,12 +68,15 @@ function logUser() {
 
 	auth.signInWithEmailAndPassword(email, senha)
 	.then(loggedUser=> {
-		errordiv.textContent = 'User logged'
+		console.log('user logged');
 	}).catch(err=> {
 		errordiv.textContent = err;
 	})
 
-	informationsDiv.style.display = 'none'
+	informationsDiv.style.display = 'none';
+	lis[0].className = '';
+	lis[1].className = 'displayNone';
+
 }
 
 function cancel() {
@@ -71,15 +86,3 @@ function cancel() {
 	senha.value = '';
 	informationsDiv.style.display = 'none';
 }
-
-// function login() {
-// 	let userEmail = 'novoteste@teste.com';
-// 	let userPassword = '123456';
-
-// 	auth.signInWithEmailAndPassword(userEmail, userPassword)
-// 		.then(loggedUser=> {
-// 			//console.log(auth.currentUser);	//*will log user with login info
-// 		}).catch(err=> {
-// 			console.log(err);
-// 		});
-// }
