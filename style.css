@@ -1,0 +1,37 @@
+:root {
+	--dark: #07070E;
+	--bold: #FF4F79;
+	--light: #EAD2AC; /* #E5D9F2 */
+	--base: #808782;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: var(--dark);
+	color: var(--base);
+	font-family: 'Merriweather', serif;
+}
+
+header {
+	height: 5rem;
+	padding: 0 2rem;
+	background-color: var(--light);
+	color: var(--bold);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+header h1 {
+	font-family: Copse, sans-serif;
+}
+header ul {
+	list-style-type: none;
+}
+header li {
+	float: left;
+	margin-left: 1rem;
+}
