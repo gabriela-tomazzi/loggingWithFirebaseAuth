@@ -52,13 +52,19 @@ p {
 	color: var(--dark);
 	border-radius: 5px;
 }
+.informations .errormsg  {
+	margin: 1rem 0;
+	color: var(--bold);
+	font-family: Copse, sans-serif;
+	font-size: 1.5rem;
+}
 .informations .buttons {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 .informations button {
-	margin-top: 3rem;
+	margin-top: 2rem;
 	width: 47%;
 	padding: 0.5rem;
 	font-family: 'Merriweather', serif;
